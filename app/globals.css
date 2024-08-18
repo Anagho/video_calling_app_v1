@@ -68,7 +68,7 @@
 }
 
 .cl-socialButtons {
-  display: flex;
+  display: flex !important;
   gap: 20px;
 }
 
