@@ -68,9 +68,8 @@
 }
 
 .cl-socialButtons {
-  /* display: flex; */
-  /* gap: 20px; */
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  gap: 20px;
 }
 
 .cl-socialButtonsIconButton {
