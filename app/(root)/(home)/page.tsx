@@ -1,10 +1,41 @@
+'use client'
+
 import MeetingTypeList from "@/components/MeetingTypeList";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-  // function to get the current date and time
-  const now = new Date();
-  const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit'});
-  const date = (new Intl.DateTimeFormat('en-US', { dateStyle: 'full'})).format(now);
+  // Using useState to declare state variables
+  const [time, setTime] = useState(() =>
+    new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  );
+  const [date, setDate] = useState(() =>
+    new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(new Date())
+  );
+
+  useEffect(() => {
+   const updateDateTime = () => {
+     const now = new Date();
+     setTime(
+       now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
+     );
+     setDate(
+       new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(now)
+     );
+     console.log("Time Updated:", now); // Debugging line
+   };
+
+   // Initial update
+   updateDateTime();
+
+   // Update time every second
+   const intervalId = setInterval(updateDateTime, 1000);
+
+   // Clean up the interval on component unmount
+   return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <section className="flex size-full flex-col gap-10 text-white">
@@ -15,9 +46,7 @@ const Home = () => {
           </h2>
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-extrabold lg:text-7xl">{time}</h1>
-            <p className="text-lg font-medium text-sky-1 lg:text-2xl">
-              {date}
-            </p>
+            <p className="text-lg font-medium text-sky-1 lg:text-2xl">{date}</p>
           </div>
         </div>
       </div>
