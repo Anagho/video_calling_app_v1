@@ -1,16 +1,11 @@
-import React, { ReactNode } from "react";
+"use client";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import Image from "next/image";
+import { ReactNode } from "react";
+
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 interface MeetingModalProps {
   isOpen: boolean;
@@ -19,8 +14,9 @@ interface MeetingModalProps {
   className?: string;
   children?: ReactNode;
   handleClick?: () => void;
-  buttonText: string;
+  buttonText?: string;
   image?: string;
+  buttonClassName?: string;
   buttonIcon?: string;
 }
 
@@ -44,13 +40,19 @@ const MeetingModal = ({
               <Image src={image} alt="image" width={72} height={72} />
             </div>
           )}
-          <h1 className={cn('text-3xl font-bold leading-[42px]', className)}>{title}</h1>
+          <h1 className={cn("text-3xl font-bold leading-[42px]", className)}>
+            {title}
+          </h1>
           {children}
-          <Button className="bg-blue-1 focus-visible:ring-0 focus-visible:ring-offset-0" onClick={handleClick}>
+          <Button
+            className="bg-blue-1 focus-visible:ring-0 focus-visible:ring-offset-0"
+            onClick={handleClick}
+          >
             {buttonIcon && (
-              <Image src={buttonIcon} alt="btton icon" width={13} height={13} />  
-            )} &nbsp;
-            {buttonText || 'Schedule Meeting'}
+              <Image src={buttonIcon} alt="btton icon" width={13} height={13} />
+            )}{" "}
+            &nbsp;
+            {buttonText || "Schedule Meeting"}
           </Button>
         </div>
       </DialogContent>
