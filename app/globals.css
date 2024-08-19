@@ -67,7 +67,8 @@
   height: 2px;
 }
 
-.cl-socialButtons, .cl-internal-objb41 {
+.cl-socialButtons,
+.cl-internal-objb41 {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
@@ -83,7 +84,6 @@
   background: #fff;
 }
 
-
 .cl-internal-wkkub3 {
   color: white;
 }
@@ -96,7 +96,7 @@
   .flex-center {
     @apply flex justify-center items-center;
   }
-  
+
   .flex-between {
     @apply flex justify-between items-center;
   }
@@ -120,5 +120,17 @@
   100% {
     animation-timing-function: ease-in;
     width: 100%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  /* Styles for small screens */
+  .cl-socialButtons,
+  .cl-internal-objb41 {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px !important;
   }
 }
