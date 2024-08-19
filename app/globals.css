@@ -67,8 +67,9 @@
   height: 2px;
 }
 
-.cl-internal-objb41 {
-  grid-template-columns: repeat(3, 1fr);
+.cl-socialButtons, .cl-internal-objb41 {
+  display: flex;
+  gap: 20px;
 }
 
 .cl-socialButtonsIconButton {
