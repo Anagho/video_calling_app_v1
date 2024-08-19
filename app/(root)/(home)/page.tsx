@@ -4,37 +4,40 @@ import MeetingTypeList from "@/components/MeetingTypeList";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  // Using useState to declare state variables
-  const [time, setTime] = useState(() =>
-    new Date().toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-    })
-  );
-  const [date, setDate] = useState(() =>
-    new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(new Date())
-  );
+  // Initial time and date when the component first mounts
+  const initialTime = new Date().toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const initialDate = new Intl.DateTimeFormat("en-US", {
+    dateStyle: "full",
+  }).format(new Date());
+
+  // State variables to store the current time and date
+  const [time, setTime] = useState(initialTime);
+  const [date, setDate] = useState(initialDate);
 
   useEffect(() => {
-   const updateDateTime = () => {
-     const now = new Date();
-     setTime(
-       now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
-     );
-     setDate(
-       new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(now)
-     );
-     console.log("Time Updated:", now); // Debugging line
-   };
+    const updateDateTime = () => {
+      const now = new Date();
+      setTime(
+        now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
+      );
+      setDate(
+        new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(now)
+      );
+      console.log("Time Updated:", now); // Debugging line
+    };
 
-   // Initial update
-   updateDateTime();
+    // Initial update
+    updateDateTime();
 
-   // Update time every second
-   const intervalId = setInterval(updateDateTime, 1000);
+    // Update time every second
+    const intervalId = setInterval(updateDateTime, 1000);
 
-   // Clean up the interval on component unmount
-   return () => clearInterval(intervalId);
+    // Clean up the interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
