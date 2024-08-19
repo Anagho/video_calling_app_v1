@@ -67,6 +67,9 @@
   height: 2px;
 }
 
+.cl-internal-objb41 {
+  grid-template-columns: repeat(3, 1fr);
+}
 
 .cl-socialButtonsIconButton {
   border: 3px solid #565761;
@@ -83,11 +86,6 @@
 }
 .cl-userButtonPopoverActionButton {
   color: white;
-}
-
-.cl-socialButtons {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
 }
 /* =============================== */
 
