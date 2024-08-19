@@ -1,6 +1,7 @@
 'use client'
 
 import MeetingTypeList from "@/components/MeetingTypeList";
+import { useHasUpcomingMeeting } from "@/hooks/useHasUpcomingMeeting";
 import { useEffect, useState } from "react";
 
 const Home = () => {
@@ -17,6 +18,10 @@ const Home = () => {
   // State variables to store the current time and date
   const [time, setTime] = useState(initialTime);
   const [date, setDate] = useState(initialDate);
+
+  // Using the custom hook to check for upcoming meetings
+  const { hasUpcomingMeeting, isLoading, nextMeetingTime } =
+    useHasUpcomingMeeting();
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -45,7 +50,9 @@ const Home = () => {
       <div className="h-[300px] w-full rounded-[20px] bg-hero bg-cover">
         <div className="flex h-full flex-col justify-between max-md:px-5 max-md:py-8 lg:p-11">
           <h2 className="glassmorphism max-w-[270px] rounded py-2 text-center text-base font-normal">
-            Upcoming Meeting at: 12:30 PM
+            {hasUpcomingMeeting
+              ? `Upcoming Meeting at: ${nextMeetingTime}`
+              : "No Upcoming Meetings"}
           </h2>
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-extrabold lg:text-7xl">{time}</h1>
